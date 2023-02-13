@@ -12,7 +12,7 @@ services:
       MYSQL_PASSWORD: docker
       MYSQL_DATABASE: docker_from_zero_to_mastery_node_react
     ports:
-      - "3309:3306"
+      - 3309:3306
     networks:
       - udemy-network
         
@@ -20,12 +20,12 @@ services:
     build:
       context: ./backend
       dockerfile: ./Dockerfile
-    image: lucasemanoel/node-react-backend
+    image: node-react-backend
     restart: always
     environment: 
       TZ: America/Recife
     ports:
-      - "5000:5000"
+      - 5000:5000
     command: ./wait-for.sh db:3306 -- ./startup.sh
     depends_on:
       - db
@@ -36,12 +36,12 @@ services:
     build:
       context: ./frontend
       dockerfile: ./Dockerfile
-    image: lucasemanoel/node-react-frontend
+    image: node-react-frontend
     restart: always
     environment: 
       TZ: America/Recife
     ports:
-      - "80:80"
+      - 80:80
     depends_on:
       - db
     networks:
